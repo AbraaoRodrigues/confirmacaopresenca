@@ -33,7 +33,7 @@
 
       document.getElementById('resposta').innerText = 'Enviando...';
 
-      fetch(`https://script.google.com/macros/s/SEU_ID_AQUI/exec?id=${matricula}`)
+      fetch(`https://script.google.com/macros/s/AKfycbysOTztRSkLa_8sxCzhIcATlENXb7drVCpf5sxsoUVbvr4ZIodZeymQeLrQwo4zdXOHVw/exec?id=${matricula}`)
         .then(res => res.text())
         .then(texto => {
           document.getElementById('resposta').innerText = texto;
