@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <link rel="icon" href="data:,">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Confirmar Presença</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Confirmação de Presença</title>
+  <link rel="icon" href="data:,"> <!-- remove aviso do favicon -->
 </head>
-<body>
-  <h2>Confirmação de Presença</h2>
+<body style="font-family: Arial; padding: 30px; text-align: center;">
+  <h2>Confirmar Presença</h2>
   <form id="presencaForm">
-    <label for="matricula">Digite sua matrícula:</label><br>
-    <input type="text" id="matricula" name="matricula" required><br><br>
+    <label for="matricula">Digite sua matrícula (código):</label><br>
+    <input type="text" id="matricula" required>
+    <br><br>
     <button type="submit">Confirmar</button>
   </form>
 
@@ -20,7 +21,8 @@
       const matricula = document.getElementById("matricula").value.trim();
       if (!matricula) return;
 
-      const url = `https://script.google.com/macros/s/AKfycbx6f6sZvnYxvEcOn_fh5JPe4kCDl0Z-GvUAbtC43IMBoMBOddE9SuisJTyIvEH7qqpVFQ/exec?id=${matricula}`;
+      // ✅ SUBSTITUA ESSE LINK PELO NOVO QUE VOCÊ GERAR
+      const url = `https://script.google.com/macros/s/SEU_NOVO_ID/exec?id=${matricula}`;
       window.location.href = url;
     });
   </script>
