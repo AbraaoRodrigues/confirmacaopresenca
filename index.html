@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmação de Presença</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8f0;
+      text-align: center;
+      margin-top: 80px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 1.1em;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Confirmação de Presença</h2>
+  <p>Digite sua matrícula para confirmar presença:</p>
+  <input type="text" id="matricula" placeholder="Ex: 1234">
+  <br>
+  <button onclick="confirmarPresenca()">Confirmar</button>
+
+  <p id="resposta" style="margin-top:20px;font-weight:bold;"></p>
+
+  <script>
+    function confirmarPresenca() {
+      const matricula = document.getElementById('matricula').value;
+      if (!matricula) return alert("Informe a matrícula.");
+
+      document.getElementById('resposta').innerText = 'Enviando...';
+
+      fetch(`https://script.google.com/macros/s/SEU_ID_AQUI/exec?id=${matricula}`)
+        .then(res => res.text())
+        .then(texto => {
+          document.getElementById('resposta').innerText = texto;
+        })
+        .catch(err => {
+          document.getElementById('resposta').innerText = 'Erro ao confirmar presença.';
+        });
+    }
+  </script>
+</body>
+</html>
