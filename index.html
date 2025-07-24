@@ -1,30 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Confirmação de Presença</title>
-  <link rel="icon" href="data:,"> <!-- remove aviso do favicon -->
+  <meta charset="UTF-8">
+  <title>Confirmar Presença</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="font-family: Arial; padding: 30px; text-align: center;">
-  <h2>Confirmar Presença</h2>
-  <form id="presencaForm">
-    <label for="matricula">Digite sua matrícula (código):</label><br>
-    <input type="text" id="matricula" required>
-    <br><br>
-    <button type="submit">Confirmar</button>
+<body style="font-family:sans-serif; text-align:center; padding:30px;">
+
+  <h2>Confirmação de Presença</h2>
+  <form action="https://script.google.com/macros/s/AKfycbwC2Gll1e3gzoNzYgJcE68azsFW2H0tUPQSRHJllxfeSaJDoTHsLQPVXfsQ0EYoLsCvsg/exec" method="get">
+    <input type="text" name="id" placeholder="Matrícula" required style="padding:10px; width:80%; max-width:300px;"><br><br>
+    <input type="text" name="nome" placeholder="Nome completo" required style="padding:10px; width:80%; max-width:300px;"><br><br>
+    <button type="submit" style="padding:10px 20px;">✅ Confirmar</button>
   </form>
 
-  <script>
-    document.getElementById("presencaForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const matricula = document.getElementById("matricula").value.trim();
-      if (!matricula) return;
-
-      // ✅ SUBSTITUA ESSE LINK PELO NOVO QUE VOCÊ GERAR
-      const url = `https://script.google.com/macros/s/AKfycbyqzZlCLqmMLVWL06Sg54WjwVZhGEuM9-l58Rs0BpC6UkDvUxkZQi_FwF6bG05uRqpedg/exec?id=${matricula}`;
-      window.location.href = url;
-    });
-  </script>
 </body>
 </html>
