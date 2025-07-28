@@ -1,17 +1,69 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Confirmar Presença</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmação de Presença</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial;
+      padding-top: 50px;
+    }
+    input {
+      margin: 10px;
+      padding: 10px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+    }
+  </style>
 </head>
-<body style="font-family:sans-serif; text-align:center; padding:30px;">
-
+<body>
   <h2>Confirmação de Presença</h2>
-  <form action="https://script.google.com/macros/s/AKfycbwT0Wq63tlPZ7LdPBvJqveTkb9AoJZMV1AfSb1DZLepk7Ihv5R7l-NIVObqaVUMcGT1Ew/exec" method="get">
-    <input type="text" name="id" placeholder="Matrícula" required style="padding:10px; width:80%; max-width:300px;"><br><br>
-    <button type="submit" style="padding:10px 20px;">✅ Confirmar</button>
-  </form>
 
+  <input type="text" id="busca" placeholder="Digite matrícula ou nome">
+  <br>
+  <button onclick="consultar()">Consultar</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    async function consultar() {
+      const termo = document.getElementById('busca').value.trim();
+      const res = await fetch(
+        'https://script.google.com/macros/s/SEU_SCRIPT_ID/exec?termo=' + encodeURIComponent(termo)
+      );
+      const dados = await res.json();
+
+      const div = document.getElementById('resultado');
+      div.innerHTML = '';
+
+      if (!dados.encontrado) {
+        div.innerHTML = '<p><strong>Cadastro não encontrado.</strong></p>';
+        return;
+      }
+
+      div.innerHTML = `<p><strong>Nome:</strong> ${dados.nome}</p>`;
+
+      if (!dados.permiteConfirmar) {
+        div.innerHTML += '<p><strong>Confirmação disponível apenas em 29/07/2025 das 07:45 às 12:00.</strong></p>';
+        return;
+      }
+
+      const btn = document.createElement('button');
+      btn.innerText = 'Confirmar Presença';
+      btn.onclick = async () => {
+        const r = await fetch(
+          'https://script.google.com/macros/s/AKfycby0VNl8tw-Gok-5YtoflFScPhzj1wotGBd0gkVpgPXCqh4ZQxJIegOWzIQvUDBrsWryMw/exec?termo=' + encodeURIComponent(termo) + '&confirmar=1'
+        );
+        const d = await r.json();
+        div.innerHTML = d.confirmado
+          ? '<p><strong>Presença confirmada com sucesso.</strong></p>'
+          : '<p><strong>Erro ao confirmar presença.</strong></p>';
+      };
+      div.appendChild(btn);
+    }
+  </script>
 </body>
 </html>
