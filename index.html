@@ -32,7 +32,7 @@
     async function consultar() {
       const termo = document.getElementById('busca').value.trim();
       const res = await fetch(
-        'https://script.google.com/macros/s/SEU_SCRIPT_ID/exec?termo=' + encodeURIComponent(termo)
+        'https://script.google.com/macros/s/AKfycby0VNl8tw-Gok-5YtoflFScPhzj1wotGBd0gkVpgPXCqh4ZQxJIegOWzIQvUDBrsWryMw/exec?termo=' + encodeURIComponent(termo)
       );
       const dados = await res.json();
 
